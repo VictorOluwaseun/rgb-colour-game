@@ -13,6 +13,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/plentastudio/colorgame/entity/ColourBox.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/plentastudio/colorgame/pojo/ColourBox.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/plentastudio/colorgame/pojo/DataItem.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable-v24/btn_box_rectangular_corner.xml">
           <value>
             <set />
@@ -34,6 +49,11 @@
           </value>
         </entry>
         <entry key="$USER_HOME$/StudioProjects/android-kotlin-fundamentals-apps/RecyclerViewHeaders/app/src/main/res/drawable/btn_box_rectangular_corner.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/fragment.kt">
           <value>
             <set />
           </value>
