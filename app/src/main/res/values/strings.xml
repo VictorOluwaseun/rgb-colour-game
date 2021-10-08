@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ColorGame</string>
+    <string name="a_color_box">A color box</string>
 </resources>
