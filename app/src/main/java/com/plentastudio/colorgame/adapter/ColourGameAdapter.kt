@@ -1,6 +1,9 @@
 package com.plentastudio.colorgame.adapter
 
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.nfc.Tag
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +13,10 @@ import com.plentastudio.colorgame.databinding.HeaderColorGameBinding
 import com.plentastudio.colorgame.databinding.ListItemColorGameBinding
 import com.plentastudio.colorgame.entity.ColourBox
 import com.plentastudio.colorgame.pojo.DataItem
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 private const val ITEM_VIEW_TYPE_HEADER = 0
@@ -19,10 +26,18 @@ class ColourGameAdapter(val clickListener: ColorGameListener) :
     ListAdapter<DataItem, RecyclerView.ViewHolder>(ColourDiffCallback()) {
     private val TAG = ColourGameAdapter::class.java.simpleName
 
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
+
     fun addHeaderAndColorItem(list: List<ColourBox>?) {
-        val items = when (list) {
-            null -> listOf(DataItem.Header)
-            else -> listOf(DataItem.Header) + list.map { DataItem.ColorBoxItem(it) }
+        adapterScope.launch {
+            val items = when (list) {
+                null -> listOf(DataItem.Header)
+                else -> listOf(DataItem.Header) + list.map { DataItem.ColorBoxItem(it) }
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+                Log.d(TAG, "Adapter $currentList")
+            }
         }
     }
 
@@ -37,8 +52,8 @@ class ColourGameAdapter(val clickListener: ColorGameListener) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ColorItemViewHolder -> {
-                val colourItem = getItem(position) as DataItem.ColorBoxItem
-                holder.bind(colourItem.colourBox, clickListener)
+                val colourBoxItem = getItem(position) as DataItem.ColorBoxItem
+                holder.bind(colourBoxItem.colourBox, clickListener)
             }
         }
     }
@@ -53,26 +68,27 @@ class ColourGameAdapter(val clickListener: ColorGameListener) :
     class ColorHeaderViewHolder private constructor(val binding: HeaderColorGameBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {
-            binding.clHeader
-            binding.btnNewColours
-            binding.btnEasy
-            binding.btnHard
-        }
+//        fun bind() {
+//            binding.clHeader
+//            binding.btnNewColours
+//            binding.btnEasy
+//            binding.btnHard
+//        }
 
         companion object {
             fun from(parent: ViewGroup): ColorHeaderViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = HeaderColorGameBinding.inflate(layoutInflater, parent, false)
-                return ColorHeaderViewHolder(view)
+                val binding = HeaderColorGameBinding.inflate(layoutInflater, parent, false)
+                return ColorHeaderViewHolder(binding)
             }
         }
     }
 
     class ColorItemViewHolder private constructor(val binding: ListItemColorGameBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(color: ColourBox, clickListener: ColorGameListener) {
-            binding.btnColorBox.setColorFilter(Color.rgb(color.r, color.g, color.b))
+        fun bind(colourBox: ColourBox, clickListener: ColorGameListener) {
+            binding.colourBox = colourBox
+            binding.btnColorBox.setColorFilter(Color.parseColor(colourBox.color)) //, PorterDuff.Mode.SRC_ATOP
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
@@ -80,8 +96,8 @@ class ColourGameAdapter(val clickListener: ColorGameListener) :
         companion object {
             fun from(parent: ViewGroup): ColorItemViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = ListItemColorGameBinding.inflate(layoutInflater, parent, false)
-                return ColorItemViewHolder(view)
+                val binding = ListItemColorGameBinding.inflate(layoutInflater, parent, false)
+                return ColorItemViewHolder(binding)
             }
         }
     }

@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="color"
+            name="colourBox"
             type="com.plentastudio.colorgame.entity.ColourBox" />
         <variable
             name="clickListener"
@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp">
 
@@ -21,16 +21,16 @@
             android:id="@+id/btn_color_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:background="@null"
             android:contentDescription="@string/a_color_box"
             android:scaleType="center"
             android:src="@drawable/btn_box_rectangular_corner"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/cardview_shadow_start_color"
-            android:onClick="@{() -> clickListener.onClick(color)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{() -> clickListener.onClick(colourBox)}"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

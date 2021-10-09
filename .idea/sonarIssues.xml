@@ -38,7 +38,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/plentastudio/colorgame/ui/ColourGameFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/plentastudio/colorgame/ui/ColourGameViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/plentastudio/colorgame/utils/Constants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable-v24/btn_box_rectangular_corner.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/rounded_shape.xml">
           <value>
             <set />
           </value>
@@ -73,6 +93,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/themes.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
@@ -83,7 +108,62 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/StudioProjects/android-kotlin-fundamentals-apps/RecyclerViewHeaders/app/src/main/java/com/example/android/trackmysleepquality/sleeptracker/SleepTrackerFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/StudioProjects/android-kotlin-fundamentals-apps/RecyclerViewHeaders/app/src/main/res/drawable/btn_box_rectangular_corner.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/src/main/java/com/sf/biocapture/activity/AbstractBaseNewHomeActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/src/main/java/com/sf/biocapture/enums/Constants.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/src/main/java/com/sf/biocapture/util/NinVerificationUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/src/main/java/com/sf/biocapture/util/Utility.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/src/test/java/com/sf/biocapture/activity/nin/NinVerificationUtilTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/src/test/java/com/sf/utils/GeneralUtilTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/app/src/test/java/com/sf/utils/UtilityTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/StudioProjects/biosmart-droid/local.properties">
           <value>
             <set />
           </value>
