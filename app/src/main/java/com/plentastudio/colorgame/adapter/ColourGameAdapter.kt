@@ -1,9 +1,12 @@
 package com.plentastudio.colorgame.adapter
 
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.plentastudio.colorgame.R
 import com.plentastudio.colorgame.entity.ColourBox
 import com.plentastudio.colorgame.pojo.DataItem
 
@@ -18,6 +21,26 @@ class ColourGameAdapter(val clickListener: ColorGameListener): ListAdapter<DataI
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         TODO("Not yet implemented")
+    }
+
+    class ColorHeaderViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        companion object {
+            fun from(parent: ViewGroup): ColorHeaderViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater.inflate(R.layout.header_color_game, parent, false)
+                return ColorHeaderViewHolder(view)
+            }
+        }
+    }
+
+    class ColorItemViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        companion object {
+            fun from(parent: ViewGroup): ColorItemViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater.inflate(R.layout.list_item_color_game, parent, false)
+               return ColorItemViewHolder(view)
+            }
+        }
     }
 
 }
