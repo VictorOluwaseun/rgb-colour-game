@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="color"
+            type="com.plentastudio.colorgame.entity.ColourBox" />
+        <variable
+            name="clickListener"
+            type="com.plentastudio.colorgame.adapter.ColorGameListener" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +29,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/cardview_shadow_start_color" />
+            app:tint="@color/cardview_shadow_start_color"
+            android:onClick="@{() -> clickListener.onClick(color)}"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
