@@ -7,15 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import com.plentastudio.colorgame.R
 import com.plentastudio.colorgame.adapter.ColorGameListener
 import com.plentastudio.colorgame.adapter.ColourGameAdapter
 import com.plentastudio.colorgame.databinding.ColourGameFragmentBinding
 import androidx.appcompat.app.AppCompatActivity
-
-
+import com.plentastudio.colorgame.entity.ColourBox
+import androidx.recyclerview.widget.SimpleItemAnimator
+import org.apache.commons.lang3.BooleanUtils
 
 
 class ColourGameFragment : Fragment() {
@@ -44,16 +44,31 @@ class ColourGameFragment : Fragment() {
         setUpRecyclerView()
 
         viewModel.colours.observe(viewLifecycleOwner, {
-            colourGameAdapter?.addHeaderAndColorItem(viewModel.colours.value)
-
+            colourGameAdapter?.addHeaderAndColorItem(it, BooleanUtils.toBoolean(viewModel.isCorrect.value))
+            Log.d("ColourGameViewModel", "Observer")
+            Log.d("ColourGameViewModel", "Observer => $it")
         })
     }
 
-    private fun setUpRecyclerView() = with(binding.rvColorGame){
+    private fun setUpRecyclerView() = with(binding.rvColorGame) {
         colourGameAdapter = ColourGameAdapter(ColorGameListener { colorId ->
+            if (BooleanUtils.toBoolean(viewModel.isCorrect.value)) return@ColorGameListener
             Log.d(TAG, colorId.toString())
+            if (colorId == viewModel.selectedColor.value?.id) {
+                viewModel._isCorrect.value = true
+                viewModel.modifiedColors()
+                Toast.makeText(requireContext(), "Correct!!", Toast.LENGTH_SHORT).show() //Get the right context
+                return@ColorGameListener
+            }
+            viewModel._isCorrect.value = false
+            itemAnimator?.changeDuration = 0
+            (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+            Toast.makeText(requireContext(), "InCorrect!!", Toast.LENGTH_SHORT).show()
         })
         colourGameAdapter?.addHeaderAndColorItem(viewModel.colours.value)
+        colourGameAdapter?.appActivity = requireActivity()
+        colourGameAdapter?.viewModel = viewModel
+        colourGameAdapter?.lifecycle = viewLifecycleOwner
         val manager = GridLayoutManager(activity, 2)
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int) = when (position) {

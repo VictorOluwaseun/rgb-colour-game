@@ -2,7 +2,7 @@
     <string name="app_name">ColorGame</string>
     <string name="a_color_box">A color box</string>
     <string name="the_wonderful">The wonderful</string>
-    <string name="rgb">RGB(%r, %g, %b)</string>
+    <string name="rgb">RGB(%d, %d, %d)</string> <!--    //Use d for int instead of i and ffor double instead of d in the following line-->
     <string name="color_game">Color Game</string>
     <string name="new_colours">New Colours</string>
     <string name="easy">EASY</string>

@@ -3,14 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
+        <variable
+            name="colourBox"
+            type="com.plentastudio.colorgame.entity.ColourBox" />
+
+        <variable
+            name="viewModel"
+            type="com.plentastudio.colorgame.ui.ColourGameViewModel" />
+        <variable
+            name="adapter"
+            type="com.plentastudio.colorgame.adapter.ColourGameAdapter" />
+
+<!--         <variable-->
+<!--            name="onGame"-->
+<!--            type="View.OnClickListener" />-->
+
+        <import type="android.graphics.Color"/>
 
     </data>
-
+<!--        android:background="@{!viewModel.isCorrect ? @color/steel_blue : Color.parseColor(viewModel.selectedColor.color)}"
+-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4682b4"
+        android:background="@color/steel_blue"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="20dp"
         android:color="@color/white">
 
         <TextView
@@ -21,7 +41,8 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
+            android:paddingTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +51,6 @@
             android:id="@+id/tv_rgb_colour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rgb"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="35sp"
@@ -46,7 +66,9 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="@id/tv_rgb_colour"
             app:layout_constraintStart_toStartOf="@id/tv_rgb_colour"
             app:layout_constraintTop_toBottomOf="@id/tv_rgb_colour" />
@@ -66,13 +88,12 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
                 android:text="@string/new_colours"
                 android:textColor="@color/steel_blue"
-                android:textSize="12sp" />
+                android:textSize="14sp"
+                android:onClick="@{() -> viewModel.starGame(viewModel.squaresNum)}"
+                />
+
 
             <!-- ADDED SPACER VIEW -->
             <View
@@ -82,31 +103,27 @@
                 />
             <!-- ADDED SPACER VIEW -->
 
+<!--            android:insetTop="0dp"-->
+<!--            android:insetBottom="0dp"-->
+<!--            android:minWidth="0dp"-->
+<!--            android:minHeight="0dp"-->
                 <Button
                     android:id="@+id/btn_easy"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
                     android:text="@string/easy"
                     android:textColor="@color/steel_blue"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/btn_hard"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
                     android:text="@string/hard"
                     android:textColor="@color/steel_blue"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

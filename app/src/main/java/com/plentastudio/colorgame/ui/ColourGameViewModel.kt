@@ -2,6 +2,7 @@ package com.plentastudio.colorgame.ui
 
 import android.graphics.Color
 import android.util.Log
+import android.widget.ArrayAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +16,7 @@ class ColourGameViewModel : ViewModel() {
     val squaresNum: LiveData<Int>
         get() = _squaresNum
 
-    private var _colours = MutableLiveData<List<ColourBox>>()
+    var _colours = MutableLiveData<List<ColourBox>>()
     val colours: LiveData<List<ColourBox>>
         get() = _colours
 
@@ -23,10 +24,14 @@ class ColourGameViewModel : ViewModel() {
     val selectedColor: LiveData<ColourBox>
         get() = _selectedColor
 
+    var _isCorrect = MutableLiveData<Boolean>()
+    val isCorrect: LiveData<Boolean>
+        get() = _isCorrect
+
     init {
         _squaresNum.value = Constants.HARD.getInt()
-        _colours.value = squaresNum.value?.let { generateRandomColours() }
-        _selectedColor.value = colours.value?.let { colorPicker() }
+        _colours.value = generateRandomColours()
+        _selectedColor.value = colorPicker()
     }
 
     private fun generateRandomColours(): List<ColourBox> {
@@ -47,7 +52,7 @@ class ColourGameViewModel : ViewModel() {
         val rgbColors = String.format("#%02x%02x%02x", red, green, blue)
 //        val rgbColors = Color.rgb(red, green, blue)
         ColourBox().apply {
-            id = System.currentTimeMillis()
+            id = System.currentTimeMillis() + range.random()
             color = rgbColors
             r = red
             g = green
@@ -70,8 +75,25 @@ class ColourGameViewModel : ViewModel() {
         return selectedColor
     }
 
-    fun starGame() {
-        _colours.value = squaresNum.value?.let { generateRandomColours() }
-        _selectedColor.value = colours.value?.let { colorPicker() }
+    fun modifiedColors() {
+        val newColours = colours.value as ArrayList
+        for (i in 0 until newColours.size) {
+            val newColor = newColours[i]
+            newColor.color = selectedColor.value?.color
+            newColor.id = selectedColor.value?.id!!
+            newColours[i] = newColor
+        }
+        Log.d(TAG, newColours.toString())
+        _colours.value = newColours
+    }
+
+    fun starGame(squaresNum: Int = Constants.HARD.getInt()) {
+        Log.d(TAG, "Start Game")
+        if (squaresNum != _squaresNum.value){
+            _squaresNum.value = squaresNum
+        }
+        _colours.value = generateRandomColours()
+        _selectedColor.value = colorPicker()
+        _isCorrect.value = false
     }
 }

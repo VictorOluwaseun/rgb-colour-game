@@ -7,9 +7,13 @@ sealed class DataItem {
         override val id = colourBox.id
     }
 
-    object Header: DataItem() {
+    class Header(val isRight: Boolean) : DataItem() {
         override val id = Long.MIN_VALUE
     }
 
     abstract val id: Long
 }
+
+//object Header(val selectedColour: ColourBox): DataItem() {
+//    override val id = Long.MIN_VALUE
+//}
